@@ -1,0 +1,35 @@
+
+<div class="create-container">
+
+<h2>🧩 {{ 'CREATE_GAME' | translate }}</h2>
+
+<label>{{ 'GAME_NAME' | translate }}</label>
+<input type="text" [(ngModel)]="gameName" />
+
+<label>{{ 'WIN_POINTS' | translate }}</label>
+<select [(ngModel)]="winPoints">
+  <option *ngFor="let p of [5, 10, 15, 20]" [value]="p">{{ p }}</option>
+</select>
+
+<label>{{ 'PLAYER_COUNT' | translate }}</label>
+<select [(ngModel)]="playerCount">
+  <option *ngFor="let n of [2, 3, 4, 5, 6]" [value]="n">{{ n }}</option>
+</select>
+
+<label>{{ 'CATEGORY' | translate }}</label>
+<select [(ngModel)]="category">
+  <option value="general">{{ 'CATEGORY_GENERAL' | translate }}</option>
+  <option value="science">{{ 'CATEGORY_SCIENCE' | translate }}</option>
+  <option value="sports">{{ 'CATEGORY_SPORTS' | translate }}</option>
+  <option value="mixed">{{ 'CATEGORY_MIXED' | translate }}</option>
+</select>
+
+<label>{{ 'DIFFICULTY' | translate }}</label>
+<select [(ngModel)]="difficulty">
+  <option value="easy">{{ 'DIFFICULTY_EASY' | translate }}</option>
+  <option value="medium">{{ 'DIFFICULTY_MEDIUM' | translate }}</option>
+  <option value="hard">{{ 'DIFFICULTY_HARD' | translate }}</option>
+</select>
+
+<button (click)="createGame()">{{ 'CREATE' | translate }}</button>
+</div>

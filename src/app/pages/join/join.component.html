@@ -1,0 +1,16 @@
+<h2>{{ 'LANGUAGE' | translate }}</h2>
+<select [(ngModel)]="selectedLang" (change)="changeLang()">
+  <option value="en">English</option>
+  <option value="ar">العربية</option>
+  <option value="de">Deutsch</option>
+</select>
+
+<h3>👤 {{ 'JOIN_GAME' | translate }}</h3>
+
+<label>{{ 'NAME' | translate }}</label>
+<input type="text" [(ngModel)]="playerName" />
+
+<label>{{ 'CODE' | translate }}</label>
+<input type="text" [(ngModel)]="gameCode" />
+
+<button (click)="joinGame()">{{ 'JOIN' | translate }}</button>

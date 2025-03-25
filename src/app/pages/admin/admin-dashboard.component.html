@@ -1,0 +1,14 @@
+<h2>{{ 'GAME_NAME' | translate }}: {{ gameName }}</h2>
+
+<p>
+  <strong>{{ 'INVITE_LINK' | translate }}:</strong><br />
+  <a [href]="inviteLink" target="_blank">{{ inviteLink }}</a>
+  <button (click)="copyInviteLink()">{{ 'COPY' | translate }}</button>
+</p>
+
+<h3>{{ 'PLAYERS_JOINED' | translate }}</h3>
+<ul>
+  <li *ngFor="let player of players">{{ player }}</li>
+</ul>
+
+<button (click)="startGame()">{{ 'START_GAME' | translate }}</button>

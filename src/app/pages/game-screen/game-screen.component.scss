@@ -1,0 +1,35 @@
+.game-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.buzzer {
+  background-color: red;
+  color: white;
+  font-size: 24px;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.answers {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answers button {
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: 1px solid #1976d2;
+  cursor: pointer;
+}
+
+.answers button.selected {
+  background-color: #1976d2;
+  color: white;
+}

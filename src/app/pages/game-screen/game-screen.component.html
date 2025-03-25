@@ -1,0 +1,18 @@
+<div class="game-container">
+  <h2>{{ question }}</h2>
+
+  <button *ngIf="!hasBuzzed" (click)="buzz()" class="buzzer">
+    🔴 Buzz Now!
+  </button>
+
+  <p *ngIf="hasBuzzed && !canAnswer">Waiting to see if you're first...</p>
+
+  <div *ngIf="canAnswer" class="answers">
+    <button *ngFor="let answer of answers"
+            (click)="chooseAnswer(answer)"
+            [disabled]="selectedAnswer"
+            [class.selected]="selectedAnswer === answer">
+      {{ answer }}
+    </button>
+  </div>
+</div>

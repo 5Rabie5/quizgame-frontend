@@ -1,0 +1,13 @@
+<h2>🕒 Waiting Room</h2>
+<p>Game Code: <strong>{{ gameCode }}</strong></p>
+
+<h3>Players:</h3>
+<ul>
+  <li *ngFor="let player of players">
+    {{ player.name }} <span [style.color]="player.ready ? 'green' : 'gray'">({{ player.ready ? 'Ready ✅' : 'Waiting ⏳' }})</span>
+  </li>
+</ul>
+
+<button (click)="markReady()" [disabled]="isReady">
+  {{ isReady ? 'Waiting for others...' : 'I am Ready' }}
+</button>

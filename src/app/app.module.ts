@@ -16,9 +16,8 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard.component
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CreateGameComponent } from './pages/create-game/create-game.component';
- import { CommonModule } from '@angular/common';
-
-export function HttpLoaderFactory(http: HttpClient) {
+import { CommonModule } from '@angular/common';
+ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 

@@ -1,14 +1,18 @@
-<h2>{{ 'GAME_NAME' | translate }}: {{ gameName }}</h2>
+<div class="admin-container">
+  <h2>Game Name: {{ gameName }}</h2>
 
-<p>
-  <strong>{{ 'INVITE_LINK' | translate }}:</strong><br />
-  <a [href]="inviteLink" target="_blank">{{ inviteLink }}</a>
-  <button (click)="copyInviteLink()">{{ 'COPY' | translate }}</button>
-</p>
+  <div class="invite">
+    <label>Invite Link:</label>
+    <a [href]="inviteLink" target="_blank">{{ inviteLink }}</a>
+    <button class="copy-button" (click)="copyLink()">Copy</button>
+  </div>
 
-<h3>{{ 'PLAYERS_JOINED' | translate }}</h3>
-<ul>
-  <li *ngFor="let player of players">{{ player }}</li>
-</ul>
+  <div class="players">
+    <h4>Players Joined</h4>
+    <ul>
+      <li *ngFor="let player of players">{{ player }}</li>
+    </ul>
+  </div>
 
-<button (click)="startGame()">{{ 'START_GAME' | translate }}</button>
+  <button class="start-button" (click)="startGame()">Start Game</button>
+</div>

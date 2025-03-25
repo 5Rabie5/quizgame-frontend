@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+  players: string[] = ['Player 1', 'Player 2']; // أو يتم تحديثها ديناميكيًا لاحقًا
+
   gameName: string = '';
   gameCode: string = '';
   inviteLink: string = '';
-  players: string[] = [];
 
   constructor(private router: Router) {}
 
@@ -31,5 +32,15 @@ export class AdminDashboardComponent implements OnInit {
   copyInviteLink(): void {
     navigator.clipboard.writeText(this.inviteLink);
     alert('Invite link copied!');
+  }
+  copyLink() {
+    if (navigator.clipboard && this.inviteLink) {
+      navigator.clipboard.writeText(this.inviteLink).then(() => {
+        console.log('Link copied!');
+        // يمكنك إضافة إشعار هنا مثل "تم النسخ"
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
   }
 }

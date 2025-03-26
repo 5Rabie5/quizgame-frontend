@@ -1,35 +1,45 @@
+<mat-card class="create-card">
+  <h2><mat-icon>sports_esports</mat-icon> {{ 'CREATE_GAME' | translate }}</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'GAME_NAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="gameName" />
+  </mat-form-field>
 
-<div class="create-container">
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'WIN_POINTS' | translate }}</mat-label>
+    <mat-select [(ngModel)]="winPoints">
+      <mat-option *ngFor="let p of [100, 200, 500, 1000]" [value]="p">{{ p }}</mat-option>
+      <mat-option value="unlimited">{{ 'UNLIMITED' | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<h2>🧩 {{ 'CREATE_GAME' | translate }}</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'PLAYER_COUNT' | translate }}</mat-label>
+    <mat-select [(ngModel)]="playerCount">
+      <mat-option *ngFor="let n of [2, 4, 6, 8]" [value]="n">{{ n }}</mat-option>
+      <mat-option value="unlimited">{{ 'UNLIMITED' | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<label>{{ 'GAME_NAME' | translate }}</label>
-<input type="text" [(ngModel)]="gameName" />
+  <div class="category-dropdown">
+    <button mat-button (click)="toggleDropdown()">
+      {{ 'SELECT_CATEGORIES' | translate }} <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <div class="dropdown-menu" *ngIf="categoryDropdownOpen">
+      <div class="checkbox-option" *ngFor="let key of categoryKeys">
+        <mat-checkbox [(ngModel)]="categories[key]">{{ ('CATEGORY_' + key.toUpperCase()) | translate }}</mat-checkbox>
+      </div>
+    </div>
+  </div>
 
-<label>{{ 'WIN_POINTS' | translate }}</label>
-<select [(ngModel)]="winPoints">
-  <option *ngFor="let p of [5, 10, 15, 20]" [value]="p">{{ p }}</option>
-</select>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'DIFFICULTY' | translate }}</mat-label>
+    <mat-select [(ngModel)]="difficulty">
+      <mat-option value="easy">{{ 'DIFFICULTY_EASY' | translate }}</mat-option>
+      <mat-option value="medium">{{ 'DIFFICULTY_MEDIUM' | translate }}</mat-option>
+      <mat-option value="hard">{{ 'DIFFICULTY_HARD' | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<label>{{ 'PLAYER_COUNT' | translate }}</label>
-<select [(ngModel)]="playerCount">
-  <option *ngFor="let n of [2, 3, 4, 5, 6]" [value]="n">{{ n }}</option>
-</select>
-
-<label>{{ 'CATEGORY' | translate }}</label>
-<select [(ngModel)]="category">
-  <option value="general">{{ 'CATEGORY_GENERAL' | translate }}</option>
-  <option value="science">{{ 'CATEGORY_SCIENCE' | translate }}</option>
-  <option value="sports">{{ 'CATEGORY_SPORTS' | translate }}</option>
-  <option value="mixed">{{ 'CATEGORY_MIXED' | translate }}</option>
-</select>
-
-<label>{{ 'DIFFICULTY' | translate }}</label>
-<select [(ngModel)]="difficulty">
-  <option value="easy">{{ 'DIFFICULTY_EASY' | translate }}</option>
-  <option value="medium">{{ 'DIFFICULTY_MEDIUM' | translate }}</option>
-  <option value="hard">{{ 'DIFFICULTY_HARD' | translate }}</option>
-</select>
-
-<button (click)="createGame()">{{ 'CREATE' | translate }}</button>
-</div>
+  <button mat-raised-button color="primary" (click)="createGame()">{{ 'CREATE' | translate }}</button>
+</mat-card>

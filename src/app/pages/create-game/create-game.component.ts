@@ -1,29 +1,63 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-game',
   templateUrl: './create-game.component.html',
-  styleUrls: ['./create-game.component.scss']
+  styleUrls: ['./create-game.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    TranslatePipe
+  ]
 })
 export class CreateGameComponent {
   gameName = '';
-  winPoints = 10;
-  playerCount = 4;
-  category = 'general';
+  winPoints: number | 'unlimited' = 100;
+  playerCount: number | 'unlimited' = 2;
   difficulty = 'easy';
+  categoryDropdownOpen = false;
 
-  constructor(private router: Router) {}
+  categories: { [key: string]: boolean } = {
+    general: true,
+    science: false,
+    sports: false
+  };
+
+  get categoryKeys(): string[] {
+    return Object.keys(this.categories);
+  }
+
+  toggleDropdown() {
+    this.categoryDropdownOpen = !this.categoryDropdownOpen;
+  }
 
   createGame() {
-    const newGameCode = Math.random().toString(36).substring(2, 6).toUpperCase();
-    localStorage.setItem('gameName', this.gameName);
-    localStorage.setItem('gameCode', newGameCode);
-    localStorage.setItem('isHost', 'true');
-    localStorage.setItem('winPoints', this.winPoints.toString());
-    localStorage.setItem('playerCount', this.playerCount.toString());
-    localStorage.setItem('category', this.category);
-    localStorage.setItem('difficulty', this.difficulty);
-    this.router.navigate(['/admin']);
+    const selectedCategories = Object.keys(this.categories).filter(key => this.categories[key]);
+    const payload = {
+      gameName: this.gameName,
+      winPoints: this.winPoints,
+      playerCount: this.playerCount,
+      difficulty: this.difficulty,
+      categories: selectedCategories
+    };
+    console.log('Game Created:', payload);
   }
 }
